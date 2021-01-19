@@ -1,13 +1,160 @@
 @import "~normalize.css";
 
 @import "_variables";
-@import "modules/hello.scss";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
 body {
-  background: $wtf;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  background: rgb(138, 162, 233);
+  background: linear-gradient(
+    121deg,
+    rgba(138, 162, 233, 1) 18%,
+    rgba(148, 187, 233, 1) 42%
+  );
+  min-height: 200vh;
+}
+.main {
+  max-width: 1024px;
+  margin: 50px auto;
+  &__heading {
+    color: #742101;
+  }
+  &__paragraph {
+    margin: 22px 0;
+  }
+  &__image {
+    width: 100%;
+  }
+}
+
+.header {
+  min-height: 50px;
+  width: 100%;
+  background-color: white;
+  top: 0;
+  left: 0;
+  &__navigation {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px 0 20px 0;
+  }
+}
+
+.about-me {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "article aside";
+  column-gap: 30px;
+  grid-template-columns: 1fr 2fr;
+  &__heading {
+    grid-area: header;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: palevioletred;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+  &__paragraph {
+    grid-area: article;
+    font-family: arial;
+    margin-top: 15px;
+    padding-left: 10px;
+  }
+  &__image {
+    grid-area: aside;
+    padding-right: 30px;
+    width: 100%;
+  }
+}
+
+.diary__heading {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.week-summary {
+  border: 1px solid gray;
+  margin: 10px 0;
+  &__date {
+    font-family: arial;
+    color: #032a4b;
+    margin: 10px 0;
+    padding: 0 10px 10px 11px;
+  }
+  &__description {
+    font-family: arial;
+    padding: 0 10px 10px 10px;
+  }
+  &__date::before,
+  &__date::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: hotpink;
+    border-radius: 50%;
+    margin: 0 6px;
+  }
+}
+
+.navigation__link {
+  margin: 0 15px;
+  color: black;
+  font-weight: bold;
+  line-height: 50px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer {
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: rgb(26, 3, 3);
+  color: whitesmoke;
+  line-height: 24px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+// MEDIA - można potem pozmieniać na składnię SCSS z wykorzystaniem &
+@media (max-width: 600px) {
+  .main__image {
+    width: 100%;
+  }
+
+  .navigation__link {
+    display: block;
+    line-height: 30px;
+  }
+  .header {
+    position: fixed;
+  }
+  .header__navigation {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .navigation--open {
+    display: block;
+  }
 }
